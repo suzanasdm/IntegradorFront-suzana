@@ -1,4 +1,4 @@
-// cadastro.ts
+
 import { CommonModule, isPlatformBrowser } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit, PLATFORM_ID, inject } from '@angular/core';
