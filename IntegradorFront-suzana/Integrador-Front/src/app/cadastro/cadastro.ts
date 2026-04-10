@@ -2,8 +2,9 @@
 import { CommonModule, isPlatformBrowser } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit, PLATFORM_ID, inject } from '@angular/core';
-import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';
 import { Router, RouterModule } from '@angular/router';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-cadastro',
@@ -20,7 +21,7 @@ export class Cadastro implements OnInit {
   constructor(private http: HttpClient, private router: Router) {}
 
   ngOnInit(): void {
-    // Inicializa o formulário seguindo a lógica de validação
+   
     this.cadastroForm = this.fb.group({
       nome: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
@@ -28,18 +29,18 @@ export class Cadastro implements OnInit {
     });
   }
 
-  // A função que faz a "mágica" de enviar para o banco
+
   cadastrar() {
     if (this.cadastroForm.valid) {
       const payload = this.cadastroForm.value;
       
-      // Envia para o seu Back-end em Java/Node
+    
       this.http.post('http://localhost:8080/api/usuarios', payload).subscribe({
         next: (res: any) => {
           if (isPlatformBrowser(this.platformId)) {
-            // Salva o usuário igual você faz no login/dashboard
+           
             localStorage.setItem('usuarioLogado', JSON.stringify(res));
-            // Navega para o dashboard funcional
+          
             this.router.navigate(['/login']);
           }
         },

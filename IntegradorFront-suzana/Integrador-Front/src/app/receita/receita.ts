@@ -28,7 +28,7 @@ export class Receita implements OnInit {
   exibirInputCategoria = false;
   novaCategoriaNome = '';
 
-  // ✅ CORRIGIDO (categoriaId como number)
+  
   dadosForm = {
     descricao: '',
     valor: 0,
@@ -95,7 +95,7 @@ export class Receita implements OnInit {
       next: (res: any) => {
         this.categorias.push(res);
 
-        // ✅ seta o ID corretamente
+       
         this.dadosForm.categoriaId = res.id;
 
         this.novaCategoriaNome = '';
@@ -107,7 +107,7 @@ export class Receita implements OnInit {
 
   salvarReceita() {
 
-    // 🚨 VALIDAÇÃO (evita erro no backend)
+   
     if (!this.dadosForm.descricao || !this.dadosForm.valor || !this.dadosForm.categoriaId) {
       alert('Preencha todos os campos!');
       return;
@@ -118,7 +118,7 @@ export class Receita implements OnInit {
       valor: this.dadosForm.valor,
       data: this.dadosForm.data,
       usuarioId: this.usuarioId,
-      categoriaId: Number(this.dadosForm.categoriaId) // 🔥 GARANTE NUMBER
+      categoriaId: Number(this.dadosForm.categoriaId) 
     };
 
     console.log('Payload enviado:', payload);
@@ -127,7 +127,7 @@ export class Receita implements OnInit {
       next: () => {
         this.carregarReceitas();
 
-        // reset correto
+        
         this.dadosForm = {
           descricao: '',
           valor: 0,

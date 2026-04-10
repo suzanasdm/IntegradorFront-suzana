@@ -14,7 +14,7 @@ export class LoginService {
 
   private readonly API = 'http://localhost:8080/api/usuarios/login';
 
-  // Realiza o login e guarda os dados no localStorage
+
   login(loginData: any): Observable<any> {
     return this.http.post<any>(this.API, loginData).pipe(
       tap(res => {
@@ -25,7 +25,7 @@ export class LoginService {
     );
   }
 
-  // Verifica se existe uma sessão ativa
+
   isUsuarioLogado(): boolean {
     if (isPlatformBrowser(this.platformId)) {
       return !!localStorage.getItem('usuarioLogado');
@@ -33,7 +33,7 @@ export class LoginService {
     return false;
   }
 
-  // Finaliza a sessão e limpa os dados
+
   executarLogout(): void {
     if (isPlatformBrowser(this.platformId)) {
       localStorage.removeItem('usuarioLogado');
@@ -41,7 +41,6 @@ export class LoginService {
     }
   }
 
-  // Retorna os dados do utilizador guardado
   getDadosUsuario(): any {
     if (isPlatformBrowser(this.platformId)) {
       const user = localStorage.getItem('usuarioLogado');

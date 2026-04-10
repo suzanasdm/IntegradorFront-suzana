@@ -10,7 +10,7 @@ export class ReceitaService {
   private readonly API_RECEITAS = 'http://localhost:8080/api/receitas';
   private readonly API_CATEGORIAS = 'http://localhost:8080/api/categorias';
 
-  // --- Métodos de Receita ---
+
 
   listarReceitasPorUsuario(usuarioId: number): Observable<any[]> {
     return this.http.get<any[]>(`${this.API_RECEITAS}/usuario/${usuarioId}`);
@@ -20,7 +20,7 @@ export class ReceitaService {
     return this.http.post<any>(this.API_RECEITAS, payload);
   }
 
-  // --- Métodos de Categoria ---
+
 
   listarCategoriasPorUsuario(usuarioId: number): Observable<any[]> {
     return this.http.get<any[]>(`${this.API_CATEGORIAS}/usuario/${usuarioId}`);

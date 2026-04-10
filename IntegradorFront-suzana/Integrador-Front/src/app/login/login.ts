@@ -7,13 +7,13 @@ import { FormsModule } from '@angular/forms';
 @Component({
   selector: 'app-login',
   standalone: true,
-  // Importante: ReactiveFormsModule não é necessário aqui pois você usa [(ngModel)] (Template Driven)
+  
   imports: [CommonModule, FormsModule, RouterModule],
   templateUrl: './login.html',
   styleUrl: './login.css',
 })
 export class Login implements OnInit {
-  // Atualize aqui o nome da propriedade e do Service injetado
+  
   private loginService = inject(LoginService);
   private router = inject(Router);
 

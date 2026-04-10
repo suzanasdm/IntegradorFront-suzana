@@ -17,13 +17,12 @@ export class Dashboard implements OnInit {
   private router = inject(Router);
   private cdr = inject(ChangeDetectorRef);
 
-  // Propriedades de Estado
+  
   exibirSidebar: boolean = false;
   usuarioCompleto: any = {};
   usuarioNome: string = '';
   contasBancarias: any[] = [];
 
-  // Objeto inicializado para evitar erros de renderização
   dadosDashboard: any = {
     saldoTotal: 0,
     receita: 0,
@@ -44,26 +43,25 @@ export class Dashboard implements OnInit {
       this.usuarioCompleto = user;
       this.usuarioNome = user.nome || 'Usuário';
 
-      // Chama o carregamento automático
+     
       this.carregarTudo(user.id);
     }
   }
 
   carregarTudo(idUsuario: number) {
-    // 1. Carrega os dados do resumo (Cards)
+   
     this.http.get(`http://localhost:8080/api/dashboard/${idUsuario}`).subscribe({
       next: (res: any) => {
         this.dadosDashboard = res;
-        this.cdr.detectChanges(); // Força a atualização da tela
+        this.cdr.detectChanges(); 
       },
       error: (err) => console.error('Erro ao carregar dashboard', err)
     });
 
-    // 2. Carrega as contas da Sidebar
     this.http.get(`http://localhost:8080/api/contas/usuario/${idUsuario}`).subscribe({
       next: (res: any) => {
         this.contasBancarias = res;
-        this.cdr.detectChanges(); // Força a atualização da tela
+        this.cdr.detectChanges(); 
       },
       error: (err) => console.error('Erro ao buscar contas', err)
     });
